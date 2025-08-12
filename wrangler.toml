@@ -1,0 +1,21 @@
+name = "nodecat-ghost-meilisearch"
+main = "apps/webhook-handler/cloudflare-worker/worker.js"
+compatibility_date = "2025-03-02"
+
+# Environment variables should be configured as secrets to persist across deployments
+# Use the following commands to set them:
+# wrangler secret put WEBHOOK_SECRET
+# wrangler secret put GHOST_MEILISEARCH_CONFIG
+
+# Note: Do NOT define secrets in [vars] as they will be overwritten on deploy
+
+# Trigger builds on push to main branch
+[triggers]
+crons = []
+
+# Configure routes - removed as they're not needed for simple Workers
+# Routes are configured in the Cloudflare dashboard
+
+# Configure build - optimized for Cloudflare deployments
+[build]
+command = "npm install && npm run build:cloudflare"
